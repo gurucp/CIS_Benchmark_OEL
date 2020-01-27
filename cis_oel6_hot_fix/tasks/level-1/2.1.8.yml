@@ -8,34 +8,6 @@
     - "2.1.8"
     - scored
 
-- name: 2.1.8 - Check if telnet is installed
-  yum:
-    list: telnet-server
-  register: telnet_package_status
-  tags:
-    - level-1
-    - "2.1.8"
-    - scored
-
-- name: 2.1.8 - Check if telnet-server service status
-  command: chkconfig --list telnet
-  register: service_status_2_1_8
-  ignore_errors: True
-  changed_when: False
-  tags:
-    - level-1
-    - "2.1.8"
-    - scored
-
-- name: 2.1.8 - Display telnet-server status
-  debug:
-    msg: "Ouput message telnet-server is enabled"
-  when: service_status_2_1_8 is defined and 'on' in service_status_2_1_8.stdout_lines
-  tags:
-    - level-1
-    - "2.1.8"
-    - scored
-
 - name: 2.1.8 - Ensure telnet service is disabled
   service:
     name: telnet
@@ -49,7 +21,7 @@
     - "2.1.8"
     - scored
 
-- name: 2.1.8 - Logging action systemctl disable telnet.socket
+- name: 2.1.8 - Logging action 'chkconfig telnet off'
   lineinfile:
     path: "{{ cis_hot_fix_ansible_log }}"
     create: yes
