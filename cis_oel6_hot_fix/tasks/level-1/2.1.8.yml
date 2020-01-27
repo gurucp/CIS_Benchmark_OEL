@@ -44,7 +44,7 @@
     enabled: False
   when: 
     - which_2_1_8 is defined and 'on' in which_2_1_8
-    - telnet_package_status is defined and 'installed' in telnet_package_status.results[0].yumstate
+    - telnet_package_status | selectattr("yumstate", "match", "installed") | list | length != '0'
   register: action_2_1_8_01
 
   tags:
