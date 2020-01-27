@@ -17,21 +17,20 @@
     - "2.1.8"
     - scored
 
-- name: 2.1.8 - Check if telnet-server service is status
+- name: 2.1.8 - Check if telnet-server service status
   command: chkconfig --list telnet
   register: service_status_2_1_8
   ignore_errors: True
   changed_when: False
-  when: (telnet_package_status.results | selectattr('yumstate', 'match', 'installed') | list | length != 0)
   tags:
     - level-1
     - "2.1.8"
     - scored
 
-- name: 2.1.8 - Display registered output
+- name: 2.1.8 - Display telnet-server status
   debug:
-    msg: Ouput message is {{ service_status_2_1_8 }}
-  when: service_status_2_1_8 is defined
+    msg: "Ouput message telnet-server is enabled"
+  when: service_status_2_1_8 is defined and 'on' in service_status_2_1_8.stdout_lines
   tags:
     - level-1
     - "2.1.8"
@@ -42,9 +41,7 @@
     name: telnet
     state: stopped
     enabled: False
-  when: 
-    - service_status_2_1_8 is defined and 'on' in service_status_2_1_8
-    - (telnet_package_status.results | selectattr('yumstate', 'match', 'installed') | list | length != 0)
+  when: service_status_2_1_8 is defined and 'on' in service_status_2_1_8.stdout_lines
   register: action_2_1_8_01
 
   tags:
