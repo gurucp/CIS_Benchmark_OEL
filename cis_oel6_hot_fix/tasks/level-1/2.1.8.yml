@@ -13,7 +13,6 @@
     name: telnet
     state: stopped
     enabled: False
-  when: service_status_2_1_8 is defined and 'on' in service_status_2_1_8.stdout_lines
   register: action_2_1_8_01
 
   tags:
