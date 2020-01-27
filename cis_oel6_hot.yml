@@ -1,0 +1,9 @@
+#!/usr/bin/ansible-playbook
+---
+
+- hosts: vmaistest02.oracleoutsourcing.com
+  gather_facts: true
+  become: yes
+
+  roles:
+    - cis_oel7_hot_fix
