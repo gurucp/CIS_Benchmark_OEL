@@ -22,7 +22,7 @@
   register: which_2_1_8
   ignore_errors: True
   changed_when: False
-  when: telnet_package_status is defined and 'installed' in telnet_package_status.results[0].yumstate
+  when: telnet_package_status is defined and 'installed' in telnet_package_status.results
   tags:
     - level-1
     - "2.1.8"
