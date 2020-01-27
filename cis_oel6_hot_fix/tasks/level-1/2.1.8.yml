@@ -30,7 +30,7 @@
 
 - name: 2.1.8 - Display registered output
   debug:
-    msg: Ouput message is {{ which_2_1_8.result }}
+    msg: Ouput message is {{ which_2_1_8 }}
   when: which_2_1_8 is defined
   tags:
     - level-1
