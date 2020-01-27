@@ -22,7 +22,7 @@
   register: which_2_1_8
   ignore_errors: True
   changed_when: False
-  when: telnet_package_status.results | selectattr("yumstate", "match", "installed") | list | length != '0'
+  when: telnet_package_status.results | selectattr('yumstate', 'match', 'installed') | list | length != 0
   tags:
     - level-1
     - "2.1.8"
@@ -44,7 +44,7 @@
     enabled: False
   when: 
     - which_2_1_8 is defined and 'on' in which_2_1_8
-    - telnet_package_status.results | selectattr("yumstate", "match", "installed") | list | length != '0'
+    - telnet_package_status.results | selectattr('yumstate', 'match', 'installed') | list | length != 0
   register: action_2_1_8_01
 
   tags:
